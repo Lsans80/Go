@@ -15,6 +15,7 @@ func main() {
 
 }
 
+// askData solicita al usuario la contraseña, host y puerto de la base de datos.
 func askData() (string, string, string) {
 	var password, host, port string
 
@@ -30,6 +31,7 @@ func askData() (string, string, string) {
 	return password, host, port
 }
 
+// updateDSN actualiza el DSN de la base de datos con los valores de password, host y port.
 func updateDSN(dbDSN string) {
 	if dbDSN == "" {
 		log.Fatalf("Error updating DSN: %v", errors.New("empty DSN"))
@@ -37,14 +39,14 @@ func updateDSN(dbDSN string) {
 
 	password, host, port := askData()
 
-	// TODO: 1. Elimina todos los espacios en el valor del string dsn.
+	//Elimina todos los espacios en el valor del string dsn.
 	dbDSNNoSpaces := strings.ReplaceAll(dbDSN, " ", "")
 
-	// TODO: 2. Sustituye PASSWORD, HOST y PORT por valores inventados pero válidos.
+	//Sustituye PASSWORD, HOST y PORT por valores inventados pero válidos.
 	dbDSNUpdated := strings.ReplaceAll(dbDSNNoSpaces, "PASSWORD", password)
 	dbDSNUpdated = strings.ReplaceAll(dbDSNUpdated, "HOST", host)
 	dbDSNUpdated = strings.ReplaceAll(dbDSNUpdated, "PORT", port)
 
-	// TODO: 3. Muestra el resultado de dbDSN
+	//Muestra el resultado de dbDSN
 	fmt.Println("Updated DB DSN:", dbDSNUpdated)
 }
